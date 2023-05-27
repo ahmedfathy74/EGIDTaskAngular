@@ -1,0 +1,48 @@
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+}
+
+.card-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+.card-col {
+  flex-basis: 25%; /* Display 4 cards per row (25% width for each card) */
+  max-width: 25%;
+}
+
+.card {
+  border: 1px solid #ccc;
+  padding: 15px;
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.hovered {
+  background-color: #f8f8f8;
+}
+
+@media (max-width: 768px) {
+  /* Adjust the number of cards per row for smaller screens */
+  .card-col {
+    flex-basis: 50%; /* Display 2 cards per row on screens smaller than 768px */
+    max-width: 50%;
+  }
+}
+
+@media (max-width: 576px) {
+  /* Adjust the number of cards per row for smaller screens */
+  .card-col {
+    flex-basis: 100%; /* Display 1 card per row on screens smaller than 576px */
+    max-width: 100%;
+  }
+}

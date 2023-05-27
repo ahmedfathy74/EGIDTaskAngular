@@ -1,0 +1,47 @@
+<h2>Order Screen</h2>
+
+<div class="order-form">
+  <h3>Create New Order</h3>
+  <form (ngSubmit)="createOrder()" #orderForm="ngForm">
+    <div class="form-group">
+      <label for="personName">Person Name</label>
+      <input type="text" id="personName" class="form-control" name="personName" [(ngModel)]="newOrder.personName" required>
+    </div>
+    <div class="form-group">
+      <label for="stockId">Stock</label>
+      <select id="stockId" class="form-control" name="stockId" [(ngModel)]="newOrder.stockID" required>
+        <option *ngFor="let stock of stocks" [value]="stock.id">{{ stock.stockName }}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="quantity">Quantity</label>
+      <input type="number" id="quantity" class="form-control" name="quantity" [(ngModel)]="newOrder.quantity" required>
+    </div>
+    <br>
+    <button type="submit" class="btn btn-primary">Create Order</button>
+  </form>
+</div>
+<hr>
+<br>
+<div class="order-list">
+  <h3>Order List</h3>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Person Name</th>
+        <th>Stock Name</th>
+        <th>Price</th>
+        <th>Quantity</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let order of orders">
+        <td>{{ order.personName }}</td>
+        <td>{{ getOrderStockName(order.stockID) }}</td>
+        <td>{{ getOrderStockPrice(order.stockID) }}</td>
+        <td>{{ order.quantity }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<br>

@@ -1,0 +1,42 @@
+<!-- <h1>Stock Prices</h1>
+<div class="d-flex justify-content-between my-2">
+<ul>
+  <li *ngFor="let stock of stocks">{{ stock.StockName }} - {{ stock.Price }}</li>
+</ul>
+</div>
+market-screen.component.html -->
+
+<!-- <h2>Market Screen</h2>
+<div class="d-flex justify-content-between my-2">
+
+<table class="table table-sm">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let stock of stocks">
+      <td>{{stock.id}}</td>
+      <td>{{stock.stockName}}</td>
+      <td>{{stock.price}}</td>
+    </tr>
+  </tbody>
+</table> -->
+<!-- </div> -->
+<h2>Market Screen</h2>
+<div class="card-container">
+  <div class="card-row">
+    <div class="card-col" *ngFor="let stock of stocks">
+      <div class="card" (mouseover)="hoverCard(stock)" (mouseleave)="resetCard(stock)" [ngClass]="{ 'hovered': stock.isHovered }">
+        <div class="card-body">
+          <h5 class="card-title">{{ stock.stockName }}</h5>
+          <p class="card-text">Price: {{ stock.price }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
