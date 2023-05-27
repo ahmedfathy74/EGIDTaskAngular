@@ -11,7 +11,6 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { NgbModalModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { AddOrderComponent } from './components/order/add-order/add-order.component';
 
 @NgModule({
   declarations: [
@@ -19,8 +18,7 @@ import { AddOrderComponent } from './components/order/add-order/add-order.compon
     MarketComponent,
     OrderComponent,
     HeaderComponent,
-    FooterComponent,
-    AddOrderComponent
+    FooterComponent
   ],
   imports: [
     BrowserModule,

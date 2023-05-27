@@ -1,4 +1,4 @@
-<h2>Order Screen</h2>
+<!-- <h2>Order Screen</h2>
 
 <div class="order-form">
   <h3>Create New Order</h3>
@@ -44,4 +44,94 @@
     </tbody>
   </table>
 </div>
-<br>
+<br> -->
+
+<h2>Order Screen</h2>
+
+<!-- Modal for creating a new order -->
+<ng-template #newOrderModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Add New Order</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form (ngSubmit)="submitNewOrderForm()">
+      <div class="form-group">
+        <label for="personName">Person Name</label>
+        <input type="text" class="form-control" id="personName" [(ngModel)]="newOrder.personName" name="personName" required>
+      </div>
+      <div class="form-group">
+        <label for="stockID">Stock</label>
+        <select class="form-control" id="stockID" [(ngModel)]="newOrder.stockID" name="stockID" required>
+          <option *ngFor="let stock of stocks" [value]="stock.id">{{ stock.stockName }}</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="quantity">Quantity</label>
+        <input type="number" class="form-control" id="quantity" [(ngModel)]="newOrder.quantity" name="quantity" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+</ng-template>
+<ng-template #editOrderModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Edit Order</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form (ngSubmit)="submitEditOrderForm()">
+      <div class="form-group">
+        <label for="editPersonName">Person Name</label>
+        <input type="text" class="form-control" id="editPersonName" [(ngModel)]="editedOrder.personName" name="personName" required>
+      </div>
+      <div class="form-group">
+        <label for="editStockID">Stock</label>
+        <select class="form-control" id="editStockID" [(ngModel)]="editedOrder.stockID" name="stockID" required>
+          <option *ngFor="let stock of stocks" [value]="stock.id">{{ stock.stockName }}</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="editQuantity">Quantity</label>
+        <input type="number" class="form-control" id="editQuantity" [(ngModel)]="editedOrder.quantity" name="quantity" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Update</button>
+    </form>
+  </div>
+</ng-template>
+
+<!-- Button to open the new order modal -->
+<div class="d-flex justify-content-end mb-3">
+  <button type="button" class="btn btn-outline-success" (click)="openNewOrderModal(newOrderModal)">Add New Order</button>
+</div>
+
+<!-- Display the list of orders -->
+<table class="table">
+  <thead>
+    <tr>
+      <th>Person Name</th>
+      <th>Stock Name</th>
+      <th>Price</th>
+      <th>Quantity</th>
+      <th>Edit</th>
+      <th>Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let order of orders">
+      <td>{{ order.personName }}</td>
+      <td>{{ getOrderStockName(order) }}</td>
+      <td>{{ getOrderStockPrice(order) }}</td>
+      <td>{{ order.quantity }}</td>
+      <td><button type="button" class="btn  btn-outline-info mx" (click)="openEditOrderModal(editOrderModal, order)" >Update</button>
+      </td>
+      <td><button type="button" class="btn btn-danger" (click)="onDeleteOrder(order.orderId)" >Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
